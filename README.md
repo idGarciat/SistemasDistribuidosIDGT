@@ -1,2 +1,3 @@
 # SistemasDistribuidosIDGT
-Repositorio de arqui
+Nombre: Ismael Derick Garcia Torricos.
+CU: 111-597
