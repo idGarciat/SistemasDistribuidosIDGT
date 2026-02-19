@@ -1,0 +1,2 @@
+# SistemasDistribuidosIDGT
+Repositorio de arqui
