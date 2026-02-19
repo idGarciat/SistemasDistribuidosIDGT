@@ -21,8 +21,12 @@ public class Figuras1 {
         opcion = sc.nextInt(); 
         
         switch (opcion) {
-            case 1 -> MenuF();
+            case 1 -> {
+            listaFiguras.add(MenuF());
+            Menup();
+            }
             case 2 -> {
+            
             }
             case 3 -> {
             }
@@ -39,7 +43,7 @@ public class Figuras1 {
         };
 
 
-    static void MenuF(){
+    static IFiguras MenuF(){
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Figura a agregar:");
@@ -47,6 +51,31 @@ public class Figuras1 {
         System.out.println("2.-Triangulo");
         System.out.println("3.-Redondo");
         int opcion = sc.nextInt(); 
-
+        switch (opcion) {
+            case 1 -> {
+                int l;
+                System.out.println("Introduzca el lado");
+                l = sc.nextInt();
+                Cuadrado c1 = new Cuadrado(l);
+                return c1;
+            }
+            case 2 -> {
+                System.out.println("Introduzca la base");
+                int b = sc.nextInt();
+                System.out.println("Introduzca el la altura");
+                int h = sc.nextInt();
+                Triangulo t1 = new Triangulo(b,h);
+                return t1;
+            }
+            case 3 -> {
+                System.out.println("Introduzca el radio del circulo");
+                int r = sc.nextInt();
+                Circulo c1 = new Circulo(r);
+                return c1;
+            }
+            default -> {
+                return MenuF();
+            }
+        }
     }
 }

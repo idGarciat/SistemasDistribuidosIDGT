@@ -10,14 +10,28 @@ package com.mycompany.figuras1;
  */
 public class Circulo implements IFiguras{
 
+    int radio;
+
+    public int getRadio() {
+        return radio;
+    }
+
+    public void setRadio(int radio) {
+        this.radio = radio;
+    }
+
+    public Circulo(int radio) {
+        this.radio = radio;
+    }
+    
     @Override
     public int area() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return 3 * radio * radio; //deberia ser 3.1416 o usar una libreria que permita usar pi y luego cambiar en la interfaz para que admita floats o double
     }
 
     @Override
     public int perimetro() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return 2 * 3 * radio;
     }
     
 }
