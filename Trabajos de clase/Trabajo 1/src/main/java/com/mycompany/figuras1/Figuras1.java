@@ -17,30 +17,41 @@ public class Figuras1 {
         int opcion;
         ArrayList<IFiguras> listaFiguras = new ArrayList<IFiguras>();
         Scanner sc = new Scanner(System.in);
-        Menup();
-        opcion = sc.nextInt(); 
+        opcion = 0;
+
+        while (opcion != 3){
+                System.out.println("1.- Agregar Elemento a la superficie");
+                System.out.println("2.- Calcular el area ocupada por los elementos ");
+                System.out.println("3.- Salir");
+                opcion = sc.nextInt(); 
         
-        switch (opcion) {
-            case 1 -> {
-            listaFiguras.add(MenuF());
-            Menup();
-            }
-            case 2 -> {
-            
-            }
-            case 3 -> {
-            }
-            default -> {
-            }
+                switch (opcion) {
+                case 1 -> {
+                    listaFiguras.add(MenuF()); 
+                    break;
+                }
+                case 2 -> {
+                    if (listaFiguras.isEmpty()){
+                    System.out.println("No agregaste ninguna figura.");    
+                        return;
+                    }
+                    int totalarea = 0;
+                    System.out.println("El area ocupada por los elementos es:");
+                    for (IFiguras figura:listaFiguras){
+                    System.out.println(figura.area());
+                    totalarea += figura.area();
+                    }
+                    System.out.println("El area total ocupada por los elementos es: " + totalarea);
+                    
+                    break;
+                }
+                case 3 -> {
+                }
+            }     
         }
-            
+  
     }
     
-    static void Menup(){
-        System.out.println("1.- Agregar Elemento a la superficie");
-        System.out.println("2.- Calcular el area ocupada por los elementos ");
-        System.out.println("3.- Salir");
-        };
 
 
     static IFiguras MenuF(){
