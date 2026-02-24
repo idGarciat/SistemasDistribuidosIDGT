@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Armario {
     int codigo;
-    ArrayList<IPublicaciones> listapublicaciones = new ArrayList<IPublicaciones>();
+    public ArrayList<ABPublicaciones> listapublicaciones = new ArrayList<ABPublicaciones>();
     EArmarios tipoArmario;
 
     public int getCodigo() {
@@ -23,11 +23,11 @@ public class Armario {
         this.codigo = codigo;
     }
 
-    public ArrayList<IPublicaciones> getListapublicaciones() {
+    public ArrayList<ABPublicaciones> getListapublicaciones() {
         return listapublicaciones;
     }
 
-    public void setListapublicaciones(ArrayList<IPublicaciones> listapublicaciones) {
+    public void setListapublicaciones(ArrayList<ABPublicaciones> listapublicaciones) {
         this.listapublicaciones = listapublicaciones;
     }
 
