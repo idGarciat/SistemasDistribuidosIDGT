@@ -23,9 +23,7 @@ public class ClienteTCP {
             
             Socket client = new Socket("localhost", port);  //Aqui con poner la ip del servidor es suficiente
             PrintStream toServer = new PrintStream(client.getOutputStream());
-            BufferedReader fromServer = new BufferedReader(
-                    new InputStreamReader(client.getInputStream()));
-            
+            BufferedReader fromServer = new BufferedReader(new InputStreamReader(client.getInputStream()));
             //
             toServer.println(mensaje);
             
