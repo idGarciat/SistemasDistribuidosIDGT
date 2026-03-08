@@ -55,7 +55,7 @@ class ClientHandler extends Thread{
                 n1 = Integer.parseInt(dis.readUTF());
                 dos.writeUTF("Introduzca el segundo numero \n");
                 n2 = Integer.parseInt(dis.readUTF());
-                dos.writeUTF("Introduzca el numero de la operacion \n"
+                dos.writeUTF("Introduzca el numero de la operacion\n"
                         + "1.-suma \n 2.-resta \n 3.-Multiplicacion \n 4.-Division \n 5.-Salir");
                 op = Integer.parseInt(dis.readUTF());
                 switch(op){
