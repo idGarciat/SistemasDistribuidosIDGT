@@ -31,7 +31,6 @@ class ClientHandler extends Thread{
     @Override
     public void run() {
         String received;
-        String toreturn;
         int n1=0,n2=0,op=0;
         float resultado;
         
