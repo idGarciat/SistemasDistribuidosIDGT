@@ -12,6 +12,6 @@ import java.rmi.RemoteException;
  * @author PC1
  */
 public interface IOperaciones extends Remote{
-    String operacion(int num1, int num2) throws RemoteException;; 
+    String operacion(int num1) throws RemoteException;; 
 
 }

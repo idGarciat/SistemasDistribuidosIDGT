@@ -6,6 +6,7 @@ package com.mycompany.trabajo5;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Scanner;
 
 /**
  *
@@ -20,8 +21,21 @@ public class Fibonacci extends UnicastRemoteObject implements IOperaciones{
     
     
     @Override
-    public String operacion(int num1, int num2) throws RemoteException {
-        return "Returnando el fibonacci";
+    public String operacion(int num1) throws RemoteException {
+        return fibonacci(num1);
+    }
+    
+    String fibonacci(int num1){
+        
+        int a = 0, b = 1, suma;
+        String texto = "";
+        for (int i = 0; i < num1; i++) {
+            texto += (a + " ");
+            suma = a + b;
+            a = b;
+            b = suma;
+        }
+        return texto;
     }
     
 }

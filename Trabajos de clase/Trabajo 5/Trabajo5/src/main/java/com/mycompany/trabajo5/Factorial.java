@@ -18,8 +18,12 @@ public class Factorial  extends UnicastRemoteObject implements IOperaciones{
     }
 
     @Override
-    public String operacion(int num1, int num2) throws RemoteException {
-        return "Returnando el factorial"; 
+    public String operacion(int num1) throws RemoteException {
+        long factorial = 1;
+        for (int i = 2; i <= num1; i++) {
+            factorial *= i;
+        }
+        return "El factorial de "+num1+" es: "+factorial; 
     }
     
 }

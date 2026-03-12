@@ -24,40 +24,39 @@ public class Cliente {
         Scanner sc =new Scanner(System.in);
 
         try {
-            System.out.println("Elija una operacion:");
-            System.out.println("1.- Factorial"
+            System.out.println("Elija una operacion: \n");
+            System.out.println("1.-Factorial"
                     + "\n2.-Fibonacci"
                     + "\n3.-Sumatoria");
             int op = sc.nextInt();
             switch(op){
                 case 1->{      
-                    System.out.println("Mensaje 1 cliente");
+                    //System.out.println("Mensaje 1 cliente");
                     IOperaciones operacion=(IOperaciones)Naming.lookup("rmi://localhost/Factorial");
-                    System.out.println("Mensaje 2 cliente");
-                    System.out.println("Introduzca 2 numeros");
+                    //System.out.println("Mensaje 2 cliente");
+                    System.out.println("Introduzca el numero");
                     int num1 = sc.nextInt();
-                    int num2 = sc.nextInt();
-                    System.out.println(operacion.operacion(num1,num2));
-                    System.out.println("Mensaje 3 cliente");
+                    System.out.println(operacion.operacion(num1));
+                    //System.out.println("Mensaje 3 cliente");
                 }
                 case 2->{      
-                    System.out.println("Mensaje 1 cliente");
+                    //System.out.println("Mensaje 1 cliente");
                     IOperaciones operacion=(IOperaciones)Naming.lookup("rmi://localhost/Fibonacci");
-                    System.out.println("Mensaje 2 cliente");
-                    System.out.println("Introduzca 2 numeros");
+                    //System.out.println("Mensaje 2 cliente");
+                    System.out.println("Introduzca el numero");
                     int num1 = sc.nextInt();
-                    int num2 = sc.nextInt();
-                    System.out.println(operacion.operacion(num1,num2));
-                    System.out.println("Mensaje 3 cliente");}
+                    System.out.println(operacion.operacion(num1));
+                    //System.out.println("Mensaje 3 cliente");
+                }
                 case 3->{      
-                    System.out.println("Mensaje 1 cliente");
+                   // System.out.println("Mensaje 1 cliente");
                     IOperaciones operacion=(IOperaciones)Naming.lookup("rmi://localhost/Sumatoria");
-                    System.out.println("Mensaje 2 cliente");
-                    System.out.println("Introduzca 2 numeros");
+                    //System.out.println("Mensaje 2 cliente");
+                    System.out.println("Introduzca el numero");
                     int num1 = sc.nextInt();
-                    int num2 = sc.nextInt();
-                    System.out.println(operacion.operacion(num1,num2));
-                    System.out.println("Mensaje 3 cliente");}
+                    System.out.println(operacion.operacion(num1));
+                    //System.out.println("Mensaje 3 cliente");
+                }
             }
 
             /*
