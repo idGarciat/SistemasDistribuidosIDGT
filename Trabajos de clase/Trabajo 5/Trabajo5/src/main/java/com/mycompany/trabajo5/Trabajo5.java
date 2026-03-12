@@ -22,10 +22,14 @@ public class Trabajo5 {
         try {
             System.out.println("Mensaje 1 servidor");
             Sumatoria sumatoria=new Sumatoria();
+            Factorial factorial=new Factorial();
+            Fibonacci fibonacci=new Fibonacci();
             System.out.println("Mensaje 2 servidor");
             LocateRegistry.createRegistry(1099); //levantar el servidor de registro;
             System.out.println("Mensaje 3 servidor");
             Naming.bind("Sumatoria",sumatoria);
+            Naming.bind("Factorial",factorial);
+            Naming.bind("Fibonacci",fibonacci);
             System.out.println("Mensaje 4 servidor");
         } catch (RemoteException ex) {
             System.getLogger(Trabajo5.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);

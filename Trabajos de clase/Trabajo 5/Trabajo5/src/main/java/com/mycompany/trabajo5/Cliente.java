@@ -32,7 +32,7 @@ public class Cliente {
             switch(op){
                 case 1->{      
                     System.out.println("Mensaje 1 cliente");
-                    IOperaciones operacion=(IOperaciones)Naming.lookup("rmi://localhost/Sumatoria");
+                    IOperaciones operacion=(IOperaciones)Naming.lookup("rmi://localhost/Factorial");
                     System.out.println("Mensaje 2 cliente");
                     System.out.println("Introduzca 2 numeros");
                     int num1 = sc.nextInt();
@@ -42,7 +42,7 @@ public class Cliente {
                 }
                 case 2->{      
                     System.out.println("Mensaje 1 cliente");
-                    IOperaciones operacion=(IOperaciones)Naming.lookup("rmi://localhost/Sumatoria");
+                    IOperaciones operacion=(IOperaciones)Naming.lookup("rmi://localhost/Fibonacci");
                     System.out.println("Mensaje 2 cliente");
                     System.out.println("Introduzca 2 numeros");
                     int num1 = sc.nextInt();
@@ -56,7 +56,7 @@ public class Cliente {
                     System.out.println("Introduzca 2 numeros");
                     int num1 = sc.nextInt();
                     int num2 = sc.nextInt();
-                    System.out.println(operacion.operacion(1,2));
+                    System.out.println(operacion.operacion(num1,num2));
                     System.out.println("Mensaje 3 cliente");}
             }
 
