@@ -12,6 +12,6 @@ import java.rmi.RemoteException;
  * @author PC1
  */
 public interface IJusticia extends Remote{
-    void ConsultarCuentas(String ci,String nombres, String apellidos) throws RemoteException;
+    RespuestaCuenta ConsultarCuentas(String ci,String nombres, String apellidos) throws RemoteException;
     void Congelar(Cuenta cuenta, double monto) throws RemoteException;
 }

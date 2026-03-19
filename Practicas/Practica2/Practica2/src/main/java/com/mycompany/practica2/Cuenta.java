@@ -4,14 +4,21 @@
  */
 package com.mycompany.practica2;
 
+import java.io.Serializable;
+
 /**
  *
  * @author PC1
  */
-public class Cuenta {
+public class Cuenta implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     EBanco banco;
     String nrocuenta, ci, nombres, apellidos;
     double saldo;
+
+    public Cuenta() {
+    }
 
     public Cuenta(EBanco banco, String nrocuenta, String ci, String nombres, String apellidos, double saldo) {
         this.banco = banco;

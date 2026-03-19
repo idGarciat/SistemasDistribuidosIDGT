@@ -10,6 +10,10 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -17,6 +21,75 @@ import java.net.Socket;
  */
 public class MercantilServidorTCP {
 
+    private static final Map<String, List<RegistroCuenta>> CUENTAS_POR_CI = inicializarDatos();
+
+    private static Map<String, List<RegistroCuenta>> inicializarDatos() {
+        Map<String, List<RegistroCuenta>> datos = new HashMap<>();
+        List<RegistroCuenta> juan = new ArrayList<>();
+        juan.add(new RegistroCuenta("1515", 5200));
+        datos.put("11021654", juan);
+        return datos;
+    }
+
+    private static String procesar(String mensaje) {
+        if (mensaje == null || mensaje.isBlank()) {
+            return "";
+        }
+
+        String[] partes = mensaje.trim().split(":");
+        String operacion = partes[0].toUpperCase();
+
+        if ("BUSCAR".equals(operacion) && partes.length >= 2) {
+            String ci = partes[1].trim();
+            List<RegistroCuenta> cuentas = CUENTAS_POR_CI.get(ci);
+            if (cuentas == null || cuentas.isEmpty()) {
+                return "";
+            }
+            StringBuilder salida = new StringBuilder();
+            for (RegistroCuenta cuenta : cuentas) {
+                if (salida.length() > 0) {
+                    salida.append(":");
+                }
+                salida.append(cuenta.nroCuenta).append("-").append(cuenta.saldo);
+            }
+            return salida.toString();
+        }
+
+        if ("CONGELAR".equals(operacion) && partes.length >= 3) {
+            String nroCuenta = partes[1].trim();
+            double monto;
+            try {
+                monto = Double.parseDouble(partes[2].trim());
+            } catch (NumberFormatException ex) {
+                return "ERROR:MONTO_INVALIDO";
+            }
+
+            for (List<RegistroCuenta> cuentas : CUENTAS_POR_CI.values()) {
+                for (RegistroCuenta cuenta : cuentas) {
+                    if (cuenta.nroCuenta.equals(nroCuenta)) {
+                        if (monto <= 0 || cuenta.saldo < monto) {
+                            return "ERROR:SALDO_INSUFICIENTE";
+                        }
+                        cuenta.saldo -= monto;
+                        return "OK";
+                    }
+                }
+            }
+            return "ERROR:CUENTA_NO_ENCONTRADA";
+        }
+
+        return "ERROR:OPERACION_NO_VALIDA";
+    }
+
+    private static class RegistroCuenta {
+        String nroCuenta;
+        double saldo;
+
+        RegistroCuenta(String nroCuenta, double saldo) {
+            this.nroCuenta = nroCuenta;
+            this.saldo = saldo;
+        }
+    }
 
     public static void main(String[] args) {
          int port = 5002;
@@ -35,13 +108,12 @@ public class MercantilServidorTCP {
                 String recibido = fromClient.readLine();
                 System.out.println("El cliente envio el mensaje: " + recibido);
                 
-                //////////////////
-                String invertida = new StringBuilder(recibido).reverse().toString();
+                String respuesta = procesar(recibido);
                 
                 toClient = new PrintStream(client.getOutputStream());
-                toClient.println(invertida);
+                toClient.println(respuesta);
                 
-                //client.close();
+                client.close();
             }
 
         } catch (IOException ex) {
