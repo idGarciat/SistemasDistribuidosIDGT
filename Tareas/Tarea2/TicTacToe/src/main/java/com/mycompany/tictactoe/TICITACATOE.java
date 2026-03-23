@@ -32,7 +32,7 @@ public class TICITACATOE  extends UnicastRemoteObject implements ITICITACATOE{
     }
 
     @Override
-    public synchronized String unirse() throws RemoteException {
+    public String unirse() throws RemoteException {
         if (jugadoresConectados == 0) {
             jugadoresConectados++;
             return "X";
@@ -45,7 +45,7 @@ public class TICITACATOE  extends UnicastRemoteObject implements ITICITACATOE{
     }
 
     @Override
-    public synchronized String jugar(int fila, int col, String jugador) throws RemoteException {
+    public String jugar(int fila, int col, String jugador) throws RemoteException {
         
         tablero[fila][col] = jugador.charAt(0);
         movimientos++;
@@ -66,7 +66,7 @@ public class TICITACATOE  extends UnicastRemoteObject implements ITICITACATOE{
     }
 
     @Override
-    public synchronized String obtenerEstado() throws RemoteException {
+    public String obtenerEstado() throws RemoteException {
         return "TABLERO=" + serializarTablero()
                 + ";TURNO=" + turnoActual
                 + ";GANADOR=" + ganador
@@ -75,7 +75,7 @@ public class TICITACATOE  extends UnicastRemoteObject implements ITICITACATOE{
     }
 
     @Override
-    public synchronized String reiniciar() throws RemoteException {
+    public String reiniciar() throws RemoteException {
         inicializarTablero();
         turnoActual = "X";
         ganador = "-";

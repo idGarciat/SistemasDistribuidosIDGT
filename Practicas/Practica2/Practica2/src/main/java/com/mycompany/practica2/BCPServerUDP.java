@@ -19,12 +19,12 @@ import java.util.Map;
  */
 public class BCPServerUDP {
 
-  private static final Map<String, List<RegistroCuenta>> CUENTAS_POR_CI = inicializarDatos();
+  private static final Map<String, List<Registrocuenta>> CUENTAS_POR_CI = inicializarDatos();
 
-  private static Map<String, List<RegistroCuenta>> inicializarDatos() {
-    Map<String, List<RegistroCuenta>> datos = new HashMap<>();
-    List<RegistroCuenta> juan = new ArrayList<>();
-    juan.add(new RegistroCuenta("657654", 6000));
+  private static Map<String, List<Registrocuenta>> inicializarDatos() {
+    Map<String, List<Registrocuenta>> datos = new HashMap<>();
+    List<Registrocuenta> juan = new ArrayList<>();
+    juan.add(new Registrocuenta("657654", 6000));
     datos.put("11021654", juan);
     return datos;
   }
@@ -39,12 +39,12 @@ public class BCPServerUDP {
 
     if ("BUSCAR".equals(operacion) && partes.length >= 2) {
       String ci = partes[1].trim();
-      List<RegistroCuenta> cuentas = CUENTAS_POR_CI.get(ci);
+      List<Registrocuenta> cuentas = CUENTAS_POR_CI.get(ci);
       if (cuentas == null || cuentas.isEmpty()) {
         return "";
       }
       StringBuilder salida = new StringBuilder();
-      for (RegistroCuenta cuenta : cuentas) {
+      for (Registrocuenta cuenta : cuentas) {
         if (salida.length() > 0) {
           salida.append(":");
         }
@@ -62,8 +62,8 @@ public class BCPServerUDP {
         return "ERROR:MONTO_INVALIDO";
       }
 
-      for (List<RegistroCuenta> cuentas : CUENTAS_POR_CI.values()) {
-        for (RegistroCuenta cuenta : cuentas) {
+      for (List<Registrocuenta> cuentas : CUENTAS_POR_CI.values()) {
+        for (Registrocuenta cuenta : cuentas) {
           if (cuenta.nroCuenta.equals(nroCuenta)) {
             if (monto <= 0 || cuenta.saldo < monto) {
               return "ERROR:SALDO_INSUFICIENTE";
@@ -78,7 +78,8 @@ public class BCPServerUDP {
 
     return "ERROR:OPERACION_NO_VALIDA";
   }
-
+  
+/*
   private static class RegistroCuenta {
     String nroCuenta;
     double saldo;
@@ -88,7 +89,8 @@ public class BCPServerUDP {
       this.saldo = saldo;
     }
   }
-
+*/
+  
   public static void main (String args[]) { 
     int port=6789;  
     try {
