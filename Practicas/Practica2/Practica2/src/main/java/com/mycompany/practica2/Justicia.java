@@ -24,9 +24,9 @@ import java.util.List;
  */
 public class Justicia extends UnicastRemoteObject implements IJusticia{
 
-    private static final String HOST = "localhost";
-    private static final int PUERTO_MERCANTIL = 5002;
-    private static final int PUERTO_BCP = 6789;
+    private static String HOST = "localhost";
+    private static int PUERTO_MERCANTIL = 5002;
+    private static int PUERTO_BCP = 6789;
 
     public Justicia() throws RemoteException{
         super();
