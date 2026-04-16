@@ -12,7 +12,6 @@ import java.util.ArrayList;
  * @author PC1
  */
 public class RespuestaCuenta implements Serializable {
-    private static final long serialVersionUID = 1L;
     
     boolean error;
     String mensaje;
