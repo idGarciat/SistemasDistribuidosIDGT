@@ -81,5 +81,33 @@ namespace Servicio
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
+
+        [WebMethod]
+        public List<Class1> obtenerTodasLasCotizaciones() {
+            string cs = ConfigurationManager.ConnectionStrings["MySqlConn"].ConnectionString;
+            var cotizaciones = new List<Class1>();
+
+            using (var conn = new MySqlConnection(cs))
+            using (var cmd = new MySqlCommand(@"
+                SELECT fecha, cotizacion, cotizacion_oficial
+                FROM cotizaciones
+                ORDER BY fecha DESC;", conn))
+            {
+                conn.Open();
+                using (var rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        cotizaciones.Add(new Class1
+                        {
+                            Fecha = Convert.ToDateTime(rd["fecha"]).ToString("yyyy-MM-dd"),
+                            Cotizacion = Convert.ToDouble(rd["cotizacion"]),
+                            CotizacionOficial = Convert.ToDouble(rd["cotizacion_oficial"] == DBNull.Value ? 0 : rd["cotizacion_oficial"])
+                        });
+                    }
+                }
+            }
+            return cotizaciones;
+        }
     }
 }
