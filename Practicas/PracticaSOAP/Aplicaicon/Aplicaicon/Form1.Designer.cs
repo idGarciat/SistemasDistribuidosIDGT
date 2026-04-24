@@ -29,11 +29,10 @@
         private void InitializeComponent()
         {
             Button_Agregar = new Button();
-            Cotizacion_box = new TextBox();
+            Box_cotizacion = new TextBox();
             label1 = new Label();
-            button1 = new Button();
-            textBox1 = new TextBox();
-            label2 = new Label();
+            Button_Obtener = new Button();
+            Date_obtener = new DateTimePicker();
             SuspendLayout();
             // 
             // Button_Agregar
@@ -46,12 +45,12 @@
             Button_Agregar.UseVisualStyleBackColor = true;
             Button_Agregar.Click += button1_Click;
             // 
-            // Cotizacion_box
+            // Box_cotizacion
             // 
-            Cotizacion_box.Location = new Point(49, 345);
-            Cotizacion_box.Name = "Cotizacion_box";
-            Cotizacion_box.Size = new Size(150, 31);
-            Cotizacion_box.TabIndex = 1;
+            Box_cotizacion.Location = new Point(49, 345);
+            Box_cotizacion.Name = "Box_cotizacion";
+            Box_cotizacion.Size = new Size(150, 31);
+            Box_cotizacion.TabIndex = 1;
             // 
             // label1
             // 
@@ -63,41 +62,31 @@
             label1.Text = "Cotizacion";
             label1.Click += label1_Click_1;
             // 
-            // button1
+            // Button_Obtener
             // 
-            button1.Location = new Point(500, 382);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 3;
-            button1.Text = "Obtener";
-            button1.UseVisualStyleBackColor = true;
+            Button_Obtener.Location = new Point(500, 382);
+            Button_Obtener.Name = "Button_Obtener";
+            Button_Obtener.Size = new Size(112, 34);
+            Button_Obtener.TabIndex = 3;
+            Button_Obtener.Text = "Obtener";
+            Button_Obtener.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // Date_obtener
             // 
-            textBox1.Location = new Point(500, 345);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(150, 31);
-            textBox1.TabIndex = 4;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(500, 317);
-            label2.Name = "label2";
-            label2.Size = new Size(57, 25);
-            label2.TabIndex = 5;
-            label2.Text = "Fecha";
+            Date_obtener.Location = new Point(426, 343);
+            Date_obtener.Name = "Date_obtener";
+            Date_obtener.Size = new Size(300, 31);
+            Date_obtener.TabIndex = 4;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(label2);
-            Controls.Add(textBox1);
-            Controls.Add(button1);
+            Controls.Add(Date_obtener);
+            Controls.Add(Button_Obtener);
             Controls.Add(label1);
-            Controls.Add(Cotizacion_box);
+            Controls.Add(Box_cotizacion);
             Controls.Add(Button_Agregar);
             Name = "Form1";
             Text = "Form1";
@@ -109,10 +98,9 @@
         #endregion
 
         private Button Button_Agregar;
-        private TextBox Cotizacion_box;
+        private TextBox Box_cotizacion;
         private Label label1;
-        private Button button1;
-        private TextBox textBox1;
-        private Label label2;
+        private Button Button_Obtener;
+        private DateTimePicker Date_obtener;
     }
 }

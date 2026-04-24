@@ -2,6 +2,8 @@ namespace Aplicaicon
 {
     public partial class Form1 : Form
     {
+        //private readonly Operaciones.OperacionesBasicasSoapClient _client;
+
         public Form1()
         {
             InitializeComponent();

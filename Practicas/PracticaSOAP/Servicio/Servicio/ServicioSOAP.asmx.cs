@@ -70,11 +70,12 @@ namespace Servicio
             using (var conn = new MySqlConnection(cs))
             using (var cmd = new MySqlCommand(@"
             INSERT INTO cotizaciones (fecha, cotizacion, cotizacion_oficial)
-            VALUES (@fecha, @monto, NULL)
+            VALUES (@fecha, @monto, @cotizacion_oficial)
             ON DUPLICATE KEY UPDATE cotizacion = @monto;", conn))
             {
                 cmd.Parameters.AddWithValue("@fecha", fechaParseada.Date);
                 cmd.Parameters.AddWithValue("@monto", monto);
+                cmd.Parameters.AddWithValue("@cotizacion_oficial", 6.97);
 
                 conn.Open();
                 return cmd.ExecuteNonQuery() > 0;
