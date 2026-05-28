@@ -1,0 +1,48 @@
+{
+    "accounts": [
+        {
+            "cuenta": "1001",
+            "ci": "123456",
+            "nombres": "Juan",
+            "apellidos": "Perez",
+            "saldo": 975
+        },
+        {
+            "cuenta": "1002",
+            "ci": "234567",
+            "nombres": "Ana",
+            "apellidos": "Lopez",
+            "saldo": 475
+        },
+        {
+            "cuenta": "1003",
+            "ci": "345678",
+            "nombres": "Luis",
+            "apellidos": "Ramirez",
+            "saldo": 300
+        }
+    ],
+    "movements": [
+        {
+            "fecha": "2026-05-27T12:00:00Z",
+            "cuenta": "1001",
+            "monto": -50,
+            "descripcion": "Pago en prueba",
+            "id": "mov_20260528020351_2d8ec1"
+        },
+        {
+            "fecha": "2026-05-28T02:08:10+00:00",
+            "cuenta": "1002",
+            "monto": -25,
+            "descripcion": "Salida por transacción del intermediador",
+            "id": "mov_20260528020810_ea4f3a"
+        },
+        {
+            "fecha": "2026-05-28T02:08:10+00:00",
+            "cuenta": "1001",
+            "monto": 25,
+            "descripcion": "Entrada por transacción del intermediador",
+            "id": "mov_20260528020810_5c03d7"
+        }
+    ]
+}
