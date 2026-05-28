@@ -1,0 +1,48 @@
+{
+  "accounts": [
+    {
+      "cuenta": "1001",
+      "ci": "123456",
+      "nombres": "Juan",
+      "apellidos": "Perez",
+      "saldo": 895
+    },
+    {
+      "cuenta": "1002",
+      "ci": "234567",
+      "nombres": "Ana",
+      "apellidos": "Lopez",
+      "saldo": 555
+    },
+    {
+      "cuenta": "2001",
+      "ci": "765432",
+      "nombres": "Carlos",
+      "apellidos": "Gomez",
+      "saldo": 2000
+    },
+    {
+      "cuenta": "2002",
+      "ci": "876543",
+      "nombres": "Maria",
+      "apellidos": "Quispe",
+      "saldo": 1500
+    }
+  ],
+  "movements": [
+    {
+      "id": "mov_mppltvd2_oiru14",
+      "fecha": "2026-05-28T14:44:48+00:00",
+      "cuenta": "1001",
+      "monto": -30,
+      "descripcion": "Salida por transacción del intermediador"
+    },
+    {
+      "id": "mov_mppltvdh_wjdbut",
+      "fecha": "2026-05-28T14:44:48+00:00",
+      "cuenta": "1002",
+      "monto": 30,
+      "descripcion": "Entrada por transacción del intermediador"
+    }
+  ]
+}

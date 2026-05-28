@@ -64,8 +64,7 @@ class IntermediadorService
         $movements[] = $this->registerBnbMovement($destinationAccountId, $amount, 'Entrada por transacción del intermediador');
 
         $transactionId = 'trx_' . now()->format('YmdHis') . '_' . Str::lower(Str::random(6));
-
-        return [
+        $result = [
             'transaction_id' => $transactionId,
             'status' => 'completed',
             'source' => [
@@ -83,6 +82,33 @@ class IntermediadorService
                 'registrar operación final si se requiere',
             ],
         ];
+
+        // Intent: validate and mirror changes in Banco Económico via GraphQL (best-effort)
+        try {
+            $bcoSource = $this->fetchBancoAccountGraphQL($sourceAccountId);
+            $bcoDestination = $this->fetchBancoAccountGraphQL($destinationAccountId);
+
+            if ($bcoSource !== null && $bcoDestination !== null) {
+                $bcoUpdatedSource = $this->updateBancoBalanceGraphQL($sourceAccountId, (float) $updatedSource['saldo']);
+                $bcoUpdatedDestination = $this->updateBancoBalanceGraphQL($destinationAccountId, (float) $updatedDestination['saldo']);
+
+                $bcoMovements = [];
+                $bcoMovements[] = $this->registerBancoMovementGraphQL($sourceAccountId, -$amount, 'Salida por transacción del intermediador');
+                $bcoMovements[] = $this->registerBancoMovementGraphQL($destinationAccountId, $amount, 'Entrada por transacción del intermediador');
+
+                $result['banco_economico'] = [
+                    'source_account' => $bcoUpdatedSource,
+                    'destination_account' => $bcoUpdatedDestination,
+                    'movements' => $bcoMovements,
+                ];
+            } else {
+                $result['banco_economico'] = ['warning' => 'Alguna cuenta no existe en Banco Económico'];
+            }
+        } catch (Throwable $e) {
+            $result['banco_economico'] = ['error' => $e->getMessage()];
+        }
+
+        return $result;
     }
 
     private function fetchBnbAccount(string $accountId): ?array
@@ -131,11 +157,86 @@ class IntermediadorService
         return Http::acceptJson()->timeout(10)->retry(1, 100);
     }
 
+    private function bcoClient()
+    {
+        return Http::acceptJson()->timeout(10)->retry(1, 100);
+    }
+
     private function bnbUrl(string $path): string
     {
         $baseUrl = rtrim((string) config('intermediador.services.bnb.base_url'), '/');
 
         return $baseUrl . '/' . ltrim($path, '/');
+    }
+
+    private function bcoGraphqlEndpoint(): string
+    {
+        $base = rtrim((string) config('intermediador.services.banco_economico.rest_base_url'), '/');
+        $path = ltrim((string) config('intermediador.services.banco_economico.graphql_path'), '/');
+
+        return $base . '/' . $path;
+    }
+
+    private function fetchBancoAccountGraphQL(string $accountId): ?array
+    {
+        $endpoint = $this->bcoGraphqlEndpoint();
+        $query = <<<'GQL'
+query Account($cuenta: String!) { account(cuenta: $cuenta) { cuenta ci nombres apellidos saldo } }
+GQL;
+
+        $response = $this->bcoClient()->post($endpoint, [
+            'query' => $query,
+            'variables' => ['cuenta' => $accountId],
+        ]);
+
+        if (! $response->successful()) {
+            return null;
+        }
+
+        return $response->json('data.account');
+    }
+
+    private function updateBancoBalanceGraphQL(string $accountId, float $saldo): ?array
+    {
+        $endpoint = $this->bcoGraphqlEndpoint();
+        $mutation = <<<'GQL'
+mutation UpdateBalance($cuenta: String!, $saldo: Float!) { updateBalance(cuenta: $cuenta, saldo: $saldo) { cuenta ci nombres apellidos saldo } }
+GQL;
+
+        $response = $this->bcoClient()->post($endpoint, [
+            'query' => $mutation,
+            'variables' => ['cuenta' => $accountId, 'saldo' => $saldo],
+        ]);
+
+        if (! $response->successful()) {
+            throw new RuntimeException('Error updating Banco Económico balance: ' . $response->body(), $response->status());
+        }
+
+        return $response->json('data.updateBalance');
+    }
+
+    private function registerBancoMovementGraphQL(string $accountId, float $amount, string $description): ?array
+    {
+        $endpoint = $this->bcoGraphqlEndpoint();
+        $mutation = <<<'GQL'
+mutation AddMovement($fecha: String!, $cuenta: String!, $monto: Float!, $descripcion: String) { addMovement(fecha: $fecha, cuenta: $cuenta, monto: $monto, descripcion: $descripcion) { id fecha cuenta monto descripcion } }
+GQL;
+
+        $response = $this->bcoClient()->post($endpoint, [
+            'query' => $mutation,
+            'variables' => [
+                'fecha' => now()->toIso8601String(),
+                'cuenta' => $accountId,
+                'monto' => $amount,
+                'descripcion' => $description,
+            ],
+        ]);
+
+        if (! $response->successful()) {
+            throw new RuntimeException('Error registering movement in Banco Económico: ' . $response->body(), $response->status());
+        }
+
+        return $response->json('data.addMovement');
     }
 
     private function ensureSuccessfulResponse(Response $response, string $message): void

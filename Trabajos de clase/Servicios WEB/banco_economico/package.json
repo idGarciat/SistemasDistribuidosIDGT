@@ -1,0 +1,18 @@
+{
+  "name": "banco_economico",
+  "version": "1.0.0",
+  "description": "Banco Económico GraphQL stub for the payments practice",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

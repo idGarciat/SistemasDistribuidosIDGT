@@ -43,3 +43,9 @@ Invoke-WebRequest -Method Post http://127.0.0.1:8000/transaccion -Headers @{Auth
 3. El intermediador consulta las cuentas en BNB.
 4. Si hay saldo suficiente, descuenta y acredita el monto.
 5. Registra movimientos en BNB y devuelve la respuesta final.
+
+## Comandos para las dependencias:
+composer install
+php artisan migrate
+php artisan migrate:fresh --seed
+php artisan migrate:fresh
