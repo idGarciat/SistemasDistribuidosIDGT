@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comercio 1</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero">
+      <p class="eyebrow">Pasarela de pagos</p>
+      <h1>Comercio 1</h1>
+      <p class="lede">Cliente web en Node que autentica contra el intermediador y envía transacciones REST.</p>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Autenticación</h2>
+        <span class="badge">JWT simulado</span>
+      </div>
+      <div class="grid two">
+        <label>
+          Usuario
+          <input id="usuario" type="text" value="demo" />
+        </label>
+        <label>
+          Contraseña
+          <input id="password" type="password" value="demo" />
+        </label>
+      </div>
+      <button id="btn-login" class="primary">Iniciar sesión</button>
+      <div class="status-row">
+        <span>Token</span>
+        <code id="token-preview">sin token</code>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Transacción</h2>
+        <span class="badge accent">REST</span>
+      </div>
+      <div class="grid two">
+        <label>
+          Cuenta origen
+          <input id="cuentaOrigen" type="text" value="1002" />
+        </label>
+        <label>
+          Cuenta destino
+          <input id="cuentaDestino" type="text" value="1001" />
+        </label>
+        <label>
+          Monto
+          <input id="monto" type="number" min="0.01" step="0.01" value="10" />
+        </label>
+        <label>
+          Fecha
+          <input id="fecha" type="datetime-local" />
+        </label>
+      </div>
+      <button id="btn-transfer" class="primary">Enviar transacción</button>
+    </section>
+
+    <section class="card response-card">
+      <div class="card-head">
+        <h2>Respuesta</h2>
+        <button id="btn-clear" class="ghost">Limpiar</button>
+      </div>
+      <pre id="output">Listo para operar.</pre>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

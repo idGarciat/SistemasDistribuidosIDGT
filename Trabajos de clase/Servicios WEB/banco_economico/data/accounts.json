@@ -19,7 +19,7 @@
       "ci": "765432",
       "nombres": "Carlos",
       "apellidos": "Gomez",
-      "saldo": 2000
+      "saldo": 2020
     },
     {
       "cuenta": "2002",
@@ -42,6 +42,27 @@
       "fecha": "2026-05-28T14:44:48+00:00",
       "cuenta": "1002",
       "monto": 30,
+      "descripcion": "Entrada por transacción del intermediador"
+    },
+    {
+      "id": "mov_mpptc1fk_r4p2ds",
+      "fecha": "2026-05-28T18:14:53+00:00",
+      "cuenta": "2001",
+      "monto": 25,
+      "descripcion": "Entrada por transacción del intermediador"
+    },
+    {
+      "id": "mov_mpptcma9_0v88ur",
+      "fecha": "2026-05-28T18:15:20+00:00",
+      "cuenta": "2001",
+      "monto": -10,
+      "descripcion": "Salida por transacción del intermediador"
+    },
+    {
+      "id": "mov_mpptgruq_9e0mxl",
+      "fecha": "2026-05-28T18:18:34+00:00",
+      "cuenta": "2001",
+      "monto": 5,
       "descripcion": "Entrada por transacción del intermediador"
     }
   ]

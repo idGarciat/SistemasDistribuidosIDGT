@@ -1,0 +1,10 @@
+{
+  "name": "comercio1",
+  "version": "1.0.0",
+  "description": "Cliente web Node para la pasarela de pagos",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  }
+}

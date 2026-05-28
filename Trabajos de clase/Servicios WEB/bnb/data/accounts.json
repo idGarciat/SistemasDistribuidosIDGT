@@ -5,14 +5,14 @@
             "ci": "123456",
             "nombres": "Juan",
             "apellidos": "Perez",
-            "saldo": 895
+            "saldo": 900
         },
         {
             "cuenta": "1002",
             "ci": "234567",
             "nombres": "Ana",
             "apellidos": "Lopez",
-            "saldo": 555
+            "saldo": 530
         },
         {
             "cuenta": "1003",
@@ -71,6 +71,27 @@
             "monto": 30,
             "descripcion": "Entrada por transacción del intermediador",
             "id": "mov_20260528144448_610fe0"
+        },
+        {
+            "fecha": "2026-05-28T18:14:53+00:00",
+            "cuenta": "1002",
+            "monto": -25,
+            "descripcion": "Salida por transacción del intermediador",
+            "id": "mov_20260528181453_af3a3d"
+        },
+        {
+            "fecha": "2026-05-28T18:15:20+00:00",
+            "cuenta": "1001",
+            "monto": 10,
+            "descripcion": "Entrada por transacción del intermediador",
+            "id": "mov_20260528181520_397291"
+        },
+        {
+            "fecha": "2026-05-28T18:18:34+00:00",
+            "cuenta": "1001",
+            "monto": -5,
+            "descripcion": "Salida por transacción del intermediador",
+            "id": "mov_20260528181834_ee9e03"
         }
     ]
 }
